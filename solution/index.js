@@ -7,14 +7,8 @@ module.exports = function (Homework) {
     return new Promise((resolve) => arr.length(resolve))
   }
 
-  function equalPromise(a, b) {
-    return new Promise((resolve) => Homework.equal(a, b, resolve))
-  }
-
   return async (array, fn, initialValue, cb) => {
-    let accumulator = !equalPromise(initialValue, undefined)
-      ? initialValue
-      : await getPromise(array, 0)
+    let accumulator = initialValue
 
     const length = await lengthPromise(array)
     const arrayIndexes = Array.from({ length: length }, (v, k) => k)
