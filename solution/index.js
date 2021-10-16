@@ -1,41 +1,31 @@
 module.exports = function (Homework) {
-  const getPromise = (arr, index) =>
-    new Promise((resolve) => arr.get(index, (result) => resolve(result)))
+  function getPromise(arr, index) {
+    return new Promise((resolve) => arr.get(index, resolve))
+  }
 
-  const lengthPromise = (arr) =>
-    new Promise((resolve) => arr.length((result) => resolve(result)))
+  function lengthPromise(arr) {
+    return new Promise((resolve) => arr.length(resolve))
+  }
 
-  const lessPromise = (a, b) =>
-    new Promise((resolve) => Homework.less(a, b, (result) => resolve(result)))
-
-  const addPromise = (a, b) =>
-    new Promise((resolve) => Homework.add(a, b, (result) => resolve(result)))
-
-  const equalPromise = (a, b) =>
-    new Promise((resolve) => Homework.equal(a, b, (result) => resolve(result)))
+  function equalPromise(a, b) {
+    return new Promise((resolve) => Homework.equal(a, b, resolve))
+  }
 
   return async (array, fn, initialValue, cb) => {
     let accumulator = !equalPromise(initialValue, undefined)
       ? initialValue
       : await getPromise(array, 0)
 
-    let i = 0
+    const length = await lengthPromise(array)
+    const arrayIndexes = Array.from({ length: length }, (v, k) => k)
 
-    const loop = async () => {
-      const length = await lengthPromise(array)
-      if (!(await lessPromise(i, length))) return
-
+    for (let i in arrayIndexes) {
       const current = await getPromise(array, i)
       accumulator = await new Promise((resolve) =>
         fn(accumulator, current, i, array, (res) => resolve(res))
       )
-
-      i = await addPromise(i, 1)
-
-      return loop()
     }
-    await loop()
 
-    return await cb(accumulator)
+    return cb(accumulator)
   }
 }
