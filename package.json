@@ -1,0 +1,23 @@
+{
+  "name": "yandex-academy-acync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "playground.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "node playground.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xaazias/yandex-academy-async.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xaazias/yandex-academy-async/issues"
+  },
+  "homepage": "https://github.com/xaazias/yandex-academy-async#readme",
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}

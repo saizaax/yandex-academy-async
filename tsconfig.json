@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "allowJs": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "outDir": "./dist",
+    "sourceMap": false,
+    "esModuleInterop": false,
+    "removeComments": true,
+    "noImplicitThis": false
+  },
+  "include": ["src", "playground.js"]
+}

@@ -13,7 +13,7 @@ module.exports = function (Homework) {
     const length = await lengthPromise(array)
     const arrayIndexes = Array.from({ length: length }, (v, k) => k)
 
-    for (let i in arrayIndexes) {
+    for (let i of arrayIndexes) {
       const current = await getPromise(array, i)
       accumulator = await new Promise((resolve) =>
         fn(accumulator, current, i, array, (res) => resolve(res))
